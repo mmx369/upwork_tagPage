@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import './App.css'
+import styles from './App.module.css'
 import { Container } from './components/Container/Container'
 import { Input } from './components/Input/Input'
 
@@ -10,9 +10,10 @@ function App() {
 
   const fetchData = async () => {
     const response = await fetch(
-      'https://6357f067c27556d289325a88.mockapi.io/api/v1/films'
+      'https://6357f067c27556d289325a88.mockapi.io/api/v1/films?page=1&limit=10'
     )
     const data = await response.json()
+
     setData(data)
   }
 
@@ -21,14 +22,13 @@ function App() {
   }, [])
 
   return (
-    <>
-      <div>
-        <Input
-          placeholder='Enter Post Title'
-          onChange={(event) => setQuery(event.target.value)}
-        />
-      </div>
-      <div className='App'>
+    <div className={styles.container}>
+      <Input
+        placeholder='Enter Tag...'
+        className={styles.search_input}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+      <div className={styles.tag_list}>
         {data
           .filter((el) => {
             if (query === '') {
@@ -49,7 +49,7 @@ function App() {
             return <Container key={uuidv4()} el={el} />
           })}
       </div>
-    </>
+    </div>
   )
 }
 

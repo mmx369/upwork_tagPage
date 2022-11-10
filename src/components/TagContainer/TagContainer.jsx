@@ -48,14 +48,16 @@ export const TagContainer = ({ id }) => {
           </div>
         ))}
       </div>
-      <Input
-        type='text'
-        className='tags-input'
-        value={value}
-        placeholder='Type somthing'
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <Button children='Add Tag' onClick={addTagsHandler} />
+      <div className={styles.tags_input_container__footer}>
+        <Input
+          type='text'
+          className='tags-input'
+          value={value}
+          placeholder='Type somthing'
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <Button children='Add Tag' onClick={addTagsHandler} />
+      </div>
     </div>
   )
 }
